@@ -443,6 +443,7 @@ async def story_to_instagram(caption:str, file: UploadFile=File(...)):
         
 @app.post("/upload_post")
 async def post_to_instagram(caption: str, file: UploadFile = File(...)):
+    driver.get('https://www.instagram.com/')
     asd = """//*[@aria-label='New post']"""
     abc = """//button[text()='Select from computer']"""
     nsd = """//div[text()='Next']"""
@@ -454,6 +455,7 @@ async def post_to_instagram(caption: str, file: UploadFile = File(...)):
         print("Size of file = ", file.size)
         absolute_upload_dir = os.path.abspath(UPLOAD_DIR)
         file_path = os.path.join(absolute_upload_dir, file.filename)
+
         
         # Ensure the upload directory exists
         os.makedirs(absolute_upload_dir, exist_ok=True)
@@ -503,6 +505,7 @@ async def post_to_instagram(caption: str, file: UploadFile = File(...)):
         
         except Exception as e:
             print("An error occurred while uploading the image/video:", str(e))
+            return {"message": "Failed to upload"}
         
         finally:
             # Clean up the uploaded file
