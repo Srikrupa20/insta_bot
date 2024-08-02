@@ -500,7 +500,7 @@ async def post_to_instagram(caption: str, file: UploadFile = File(...)):
             driver.find_element(By.XPATH, nsd).click()
             time.sleep(2)
             
-            caption_xpath = """/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div/div/div/div[2]/div[2]/div/div/div/div[1]/div[2]/div/div[1]/div[1]"""
+            caption_xpath = """//*[@aria-label='Write a caption...']"""
             driver.find_element(By.XPATH, caption_xpath).send_keys(caption)
             time.sleep(2)
             share_xpath = """//div[text()='Share']"""
