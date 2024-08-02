@@ -483,11 +483,10 @@ async def post_to_instagram(caption: str, file: UploadFile = File(...)):
             # Interact with the Instagram UI using Selenium
             New_Post = driver.find_element(By.XPATH, asd).click()
             time.sleep(2)
-            path = r"C:\Users\chira\Desktop\demoVideo.mp4"
 
             time.sleep(2)
             file_input = driver.find_element(By.CSS_SELECTOR, "input[type='file']")
-            file_input.send_keys(path)
+            file_input.send_keys(file_path)
             time.sleep(9)
             ok_button="""/html/body/div[6]/div[2]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[3]/div/div[4]/button"""
             try:
