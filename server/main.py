@@ -444,6 +444,12 @@ async def story_to_instagram(caption:str, file: UploadFile=File(...)):
 @app.post("/upload_post")
 async def post_to_instagram(caption: str, file: UploadFile = File(...)):
     driver.get('https://www.instagram.com/')
+    time.sleep(2)
+    try:
+        driver.find_element(By.XPATH , "//button[text()='Not Now']").click()
+    except:
+        pass
+        time.sleep(1)
     asd = """//*[@aria-label='New post']"""
     abc = """//button[text()='Select from computer']"""
     nsd = """//div[text()='Next']"""
