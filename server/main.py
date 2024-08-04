@@ -3,7 +3,7 @@ import os
 import shutil
 from typing import List
 from fastapi import FastAPI, File, HTTPException, Form, UploadFile
-import pyautogui
+
 import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
