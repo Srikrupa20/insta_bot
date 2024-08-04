@@ -205,7 +205,13 @@ def check_instagram_login(username: str, password: str):
         # chrome_options.add_argument("--headless")
         global driver
  
-        driver_service = Service(ChromeDriverManager().install())
+
+        chrome_options = Options()
+        # chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--no-sandbox")
+        chrome_options.add_argument("--disable-dev-shm-usage")
+
+        # driver_service = Service(ChromeDriverManager().install())
         driver = webdriver.Chrome(options=chrome_options)#service=driver_service,
 
         driver.get('https://www.instagram.com/')
