@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: your-service-name
+    env: python
+    region: your-region  # e.g., oregon
+    buildCommand: |
+      ./render-build.sh
+      pip install -r requirements.txt
+    plan: starter  # or other plan you choose
+    
