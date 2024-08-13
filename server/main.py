@@ -162,42 +162,6 @@ def verify_token(token: str = Depends(oauth2_scheme)):
             "access":"deny"
         }
 
-
-# @app.get('/login')
-# def login(username:str, password:str):
-
-#     check = authenticate_user(username,password)
-#     if(check==False):
-#         return {
-#             "status":"Failed",
-#             "message":"Credentials are wrong!!"
-#         }
-
-#     global driver
-#     chrome_options = Options()
-#     driver_service = Service(ChromeDriverManager().install())
-#     driver = webdriver.Chrome(service=driver_service, options=chrome_options)
-#     driver.get('https://www.instagram.com/')
-#     time.sleep(10)  # import time
-
-#     ## try id-> test.1231650  and pass -> 123reset456  for testing purpose
-
-#     username_input = driver.find_element(By.NAME, 'username')
-#     username_input.send_keys(username)
-#     password_input = driver.find_element(By.NAME, 'password')
-#     password_input.send_keys(password)
-                     
-#     password_input.submit()
-
-#     return {
-#         "status":"success",
-#         "message":"instagram opened for further usage"
-#     }
-
-################################################################################################################################################################
-
-# Function to check Instagram login using Selenium
-
 def check_instagram_login(username: str, password: str):
     try:
         chrome_options = Options()
@@ -207,11 +171,13 @@ def check_instagram_login(username: str, password: str):
  
 
         chrome_options = Options()
+        chrome_options.add_argument("--headless")  # This runs Chrome in headless mode
+
         # chrome_options.add_argument("--headless")
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-dev-shm-usage")
 
-        # driver_service = Service(ChromeDriverManager().install())
+        driver_service = Service(ChromeDriverManager().install())
         driver = webdriver.Chrome(options=chrome_options)#service=driver_service,
 
         driver.get('https://www.instagram.com/')
@@ -272,8 +238,6 @@ def comment_on_post(driver, post_url: str, comment_text: str):
 
         comment_post = driver.find_element(By.XPATH,"""/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[1]/div[1]/section/main/div/div[1]/div/div[2]/div/div[4]/section/div/form/div/div[2]/div""")
         comment_post.click()        
-        # comment_input.send_keys(comment_text)
-        # comment_input.send_keys(Keys.ENTER)
         time.sleep(3)
 
         print(f"Comment '{comment_text}' added successfully.")
@@ -428,7 +392,6 @@ async def story_to_instagram(caption:str, file: UploadFile=File(...)):
     # 
     try:
         # Read the file content
-        # file_content = await file.read()
         global client,UPLOAD_DIR
 
         file_path = os.path.join(UPLOAD_DIR, file.filename)
@@ -539,7 +502,6 @@ async def post_to_instagram(data: tempMsgToMultipleUsers):
     
     try:
         # Read the file content
-        # file_content = await file.read()
         global client
 
         lst = list(data.lst)
